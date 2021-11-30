@@ -41,7 +41,7 @@ int main(void) {
 			controller_loadFromTextEditorial(archivoCargarEditoriales, listaEditoriales);
 			break;
 		case 3:
-			if(!ll_isEmpty(listaLibros))
+			if(!ll_isEmpty(listaLibros)&& !ll_isEmpty(listaEditoriales))
 			{
 				if(listaLibros != NULL)
 				{
@@ -51,7 +51,7 @@ int main(void) {
 			}
 			else
 			{
-				printf("debe cargar el archivo (libros.csv) para poder ordenar la lista de libros \n");
+				printf("debe cargar el archivo (libros.csv) y el archivo (editoriales.csv) para poder ordenar la lista de libros\n");
 			}
 			break;
 		case 4:
@@ -90,6 +90,7 @@ int main(void) {
 		case 6:
 			if(!ll_isEmpty(listaLibros) && !ll_isEmpty(listaEditoriales))
 			{
+				controller_ListBook(listaLibros, listaEditoriales);
 				listaMapeada = ll_map(listaLibros, controller_aplicarDescuentoPlaneta);
 				listaMapeada = ll_map(listaMapeada, controller_aplicarDescuentoSigloXXI);
 				controller_ListBook(listaMapeada, listaEditoriales);
@@ -98,12 +99,17 @@ int main(void) {
 					printf("Archivo guardado con exito\n");
 					printf("Descuento del 20%% aplicado a mayores de 1500 y editorial PLANETA\n");
 					printf("Descuento del 10%% aplicado a menores de 1200 y editorial SIGLO XXI EDITORES\n");
-
+					//EL ID 100 ES UN EJEMPLO DEL DESCUENTO DE PLANETA
+					//EL ID 68 ES UN EJEMPLO DEL DESCUENTO DE SIGLO XXI EDITORES
 				}
 				else
 				{
 					printf("No fue posible guardar el archivo\n");
 				}
+			}
+			else
+			{
+				printf("debe cargar el archivo (libros.csv) y el archivo (editoriales.csv) para poder ordenar la lista de libros\n");
 			}
 			break;
 		case 7:
